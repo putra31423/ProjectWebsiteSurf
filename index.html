@@ -16,15 +16,27 @@
 ══════════════════════════════════════════ -->
     <nav>
       <a href="#" class="nav-logo">Wave Riders</a>
-      <ul class="nav-links">
-        <li><a href="#lessons">Lessons</a></li>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#instructors">Instructors</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#social">Social</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#lessons" onclick="closeMenu()">Lessons</a></li>
+        <li><a href="#how" onclick="closeMenu()">How It Works</a></li>
+        <li><a href="#instructors" onclick="closeMenu()">Instructors</a></li>
+        <li><a href="#reviews" onclick="closeMenu()">Reviews</a></li>
+        <li><a href="#social" onclick="closeMenu()">Social</a></li>
       </ul>
-      <a href="#book" class="nav-cta">Book Now</a>
+      <a href="#book" class="nav-cta desktop-cta">Book Now</a>
+      <button
+        class="hamburger"
+        id="hamburger"
+        onclick="toggleMenu()"
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+
+    <div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
 
     <!-- ══════════════════════════════════════════
      HERO
@@ -884,6 +896,32 @@
         btn.textContent = "Enquiry sent! We'll be in touch shortly.";
         btn.style.background = "#2a7a55";
         btn.disabled = true;
+
+        function toggleMenu() {
+          const nav = document.getElementById("navLinks");
+          const hamburger = document.getElementById("hamburger");
+          const overlay = document.getElementById("navOverlay");
+
+          nav.classList.toggle("open");
+          hamburger.classList.toggle("open");
+          overlay.classList.toggle("show");
+
+          // Kunci scroll saat menu terbuka
+          document.body.style.overflow = nav.classList.contains("open")
+            ? "hidden"
+            : "";
+        }
+
+        function closeMenu() {
+          const nav = document.getElementById("navLinks");
+          const hamburger = document.getElementById("hamburger");
+          const overlay = document.getElementById("navOverlay");
+
+          nav.classList.remove("open");
+          hamburger.classList.remove("open");
+          overlay.classList.remove("show");
+          document.body.style.overflow = "";
+        }
       }
     </script>
   </body>
