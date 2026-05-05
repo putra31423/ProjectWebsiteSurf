@@ -16,15 +16,25 @@
 ══════════════════════════════════════════ -->
     <nav>
       <a href="#" class="nav-logo">Wave Riders</a>
-      <ul class="nav-links">
-        <li><a href="#lessons">Lessons</a></li>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#instructors">Instructors</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#social">Social</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#lessons" onclick="closeMenu()">Lessons</a></li>
+        <li><a href="#how" onclick="closeMenu()">How It Works</a></li>
+        <li><a href="#instructors" onclick="closeMenu()">Instructors</a></li>
+        <li><a href="#reviews" onclick="closeMenu()">Reviews</a></li>
+        <li><a href="#social" onclick="closeMenu()">Social</a></li>
       </ul>
-      <a href="#book" class="nav-cta">Book Now</a>
+      <button
+        class="hamburger"
+        id="hamburger"
+        onclick="toggleMenu()"
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+    <div class="mobile-overlay" id="mobileOverlay" onclick="closeMenu()"></div>
 
     <!-- ══════════════════════════════════════════
      HERO
@@ -353,13 +363,13 @@
         </p>
         <div class="instructors-grid">
           <div class="instructor-card fade-up">
-            <div class="instructor-photo-placeholder">KPA</div>
+            <div class="instructor-photo-placeholder">KA</div>
             <div class="instructor-info">
-              <h3>King Putra Ananda</h3>
+              <h3>Kadek Artha</h3>
               <p class="instructor-role">Head Instructor · ISA Level 2</p>
               <p class="instructor-bio">
                 A Bali native who has been surfing since age six and teaching
-                for twelve years. Putra has an extraordinary ability to simplify
+                for twelve years. Kadek has an extraordinary ability to simplify
                 the complex — students consistently say he made surfing feel
                 effortless from day one.
               </p>
@@ -626,7 +636,7 @@
             <div
               class="feed-tile-bg"
               style="
-                background-image: url(&quot;https://images.unsplash.com/photo-1493225255756-d9584f8606e9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c3VyZmluZ3xlbnwwfHwwfHx8MA%3D%3D&quot;);
+                background-image: url(&quot;https://images.unsplash.com/photo-1545420863-e4aea7286d5c?auto=format&fit=crop&w=400&q=80&quot;);
               "
             ></div>
             <div class="feed-tile-label">View Post</div>
@@ -884,6 +894,27 @@
         btn.textContent = "Enquiry sent! We'll be in touch shortly.";
         btn.style.background = "#2a7a55";
         btn.disabled = true;
+      }
+
+      // Hamburger menu
+      function toggleMenu() {
+        const nav = document.getElementById("navLinks");
+        const btn = document.getElementById("hamburger");
+        const overlay = document.getElementById("mobileOverlay");
+        nav.classList.toggle("open");
+        btn.classList.toggle("active");
+        overlay.classList.toggle("active");
+        document.body.classList.toggle("menu-open");
+      }
+
+      function closeMenu() {
+        const nav = document.getElementById("navLinks");
+        const btn = document.getElementById("hamburger");
+        const overlay = document.getElementById("mobileOverlay");
+        nav.classList.remove("open");
+        btn.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.classList.remove("menu-open");
       }
     </script>
   </body>
